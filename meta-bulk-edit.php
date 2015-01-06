@@ -22,8 +22,8 @@ class Storm_Meta_Bulk_Edit {
 	 * @var array Configuration
 	 */
 	private $meta_settings = array(
-		'title' => 'Email', // human-readable name
-		'slug' => 'email', // meta_key as in the wp_postmeta table
+		'title' => 'Meta Name', // human-readable name
+		'slug' => 'meta-name', // meta_key as in the wp_postmeta table
 		'input_type' => 'input', // string input type
 		'post_type' => 'post',
 		'empty_message' => 'None' // default text when no data found
