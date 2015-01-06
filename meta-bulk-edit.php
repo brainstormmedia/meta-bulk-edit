@@ -82,8 +82,7 @@ class Storm_Meta_Bulk_Edit {
 	 * Populate column
 	 */
 	function manage_meta_columns( $column, $post_id ) {
-		global $post;
-	
+
 		switch( $column ) {
 	
 			/* If displaying our custom meta column. */
