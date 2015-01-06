@@ -83,23 +83,18 @@ class Storm_Meta_Bulk_Edit {
 	 */
 	function manage_meta_columns( $column, $post_id ) {
 
-		switch( $column ) {
-	
-			/* If displaying our custom meta column. */
-			case $this->meta_settings['slug'] :
-			
-				/* Get the post meta. */
-				$custom_meta = get_post_meta( $post_id, esc_html( $this->meta_settings['slug'] ), true );
-				
-				/* If no custom meta is found, output a default message. */
-				if ( empty( $custom_meta ) )
-					echo $this->meta_settings['empty_message'];
-				else
-					echo '<div class="storm-meta-input" id="storm-meta-input-' . absint( $post_id ) . '">' . get_post_meta( $post_id, esc_html( $this->meta_settings['slug'] ), true ) . '</div>';
-				break;
-				
-			default :
-				break;
+		/* If displaying our custom meta column. */
+		if ( $column === $this->meta_settings['slug'] ){
+
+			/* Get the post meta. */
+			$custom_meta = get_post_meta( $post_id, esc_html( $this->meta_settings['slug'] ), true );
+
+			/* If no custom meta is found, output a default message. */
+			if ( empty( $custom_meta ) )
+				echo $this->meta_settings['empty_message'];
+			else
+				echo '<div class="storm-meta-input" id="storm-meta-input-' . absint( $post_id ) . '">' . get_post_meta( $post_id, esc_html( $this->meta_settings['slug'] ), true ) . '</div>';
+
 		}
 	}
 	
@@ -107,24 +102,20 @@ class Storm_Meta_Bulk_Edit {
 	 * Input field output for bulk edit / quick edit
 	 */
 	function add_to_bulk_quick_edit_custom_box( $column_name, $post_type ) {
-	   switch ( $post_type ) {
-	      case $this->meta_settings['post_type']:
-	
-	         switch( $column_name ) {
-	            case $this->meta_settings['slug']:
-	               ?><fieldset class="inline-edit-col-right">
-	                  <div class="inline-edit-group">
-	                     <label>
-	                        <span class="title"><?php echo esc_html( $this->meta_settings['title'] ); ?></span>
-	                        <input type="<?php echo esc_attr( $this->meta_settings['input_type'] ); ?> " name="storm_meta_input" value="" />
-	                     </label>
-	                  </div>
-	               </fieldset><?php
-	               break;
-	         }
-	         break;
-	   }
+	      if ($post_type === $this->meta_settings['post_type'] && $column_name === $this->meta_settings['slug'] ){
+		      ?>
+		      <fieldset class="inline-edit-col-right">
+		      <div class="inline-edit-group">
+			      <label>
+				      <span class="title"><?php echo esc_html( $this->meta_settings['title'] ); ?></span>
+				      <input type="<?php echo esc_attr( $this->meta_settings['input_type'] ); ?> " name="storm_meta_input" value="" />
+			      </label>
+		      </div>
+		      </fieldset>
+	      <?php
+	      }
 	}
+
 	
 	/**
 	 * Save meta field
@@ -140,16 +131,14 @@ class Storm_Meta_Bulk_Edit {
 			return $post_id;
 		}
 	
-		switch( $post->post_type ) {
-			case $this->meta_settings['post_type']:
-	
+		if ( $post->post_type === $this->meta_settings['post_type'] ) {
+
 			if ( array_key_exists( 'storm_meta_input', $_POST ) )
 				update_post_meta( $post_id, esc_html( $this->meta_settings['slug'] ), sanitize_text_field( $_POST[ 'storm_meta_input' ] ) );
-			
-		 	break;
+
 	   }
 	}
-	
+
 	/**
 	 * Ajax save quick edit / bulk
 	 */
