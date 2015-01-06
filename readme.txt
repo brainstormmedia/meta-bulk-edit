@@ -4,7 +4,7 @@ Tags: meta, field, custom post type, bulk, quick, edit
 Author URI: http://knowmike.com
 Requires at least: 2.8
 Tested up to: 3.6.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 
 Map a meta field to a CPT for quick-edit & bulk-edit capabilities.
 
@@ -23,6 +23,10 @@ Please note that at the moment, only one meta key can be added to one post type.
 3. Modify the $meta_settings variable in meta_bulk_edit.php
 
 == Changelog ==
+
+= 1.0.2 =
+* Add validation & code reformat
+
 
 = 1.0.0 =
 * Initial release

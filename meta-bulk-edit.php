@@ -2,7 +2,7 @@
 /*
 Plugin Name: Meta Field Bulk Edit
 Description: Map a meta field to a CPT for quick-edit & bulk-edit capabilities.
-Version: 1.0.0
+Version: 1.0.2
 Author: Mike Jordan, 10up
 Author URI: http://knowmike.com
 License: GPLv2
