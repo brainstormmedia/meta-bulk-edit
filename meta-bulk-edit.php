@@ -90,11 +90,11 @@ class Storm_Meta_Bulk_Edit {
 			$custom_meta = get_post_meta( $post_id, esc_html( $this->meta_settings['slug'] ), true );
 
 			/* If no custom meta is found, output a default message. */
-			if ( empty( $custom_meta ) )
+			if ( empty( $custom_meta ) ) {
 				echo $this->meta_settings['empty_message'];
-			else
+			} else {
 				echo '<div class="storm-meta-input" id="storm-meta-input-' . absint( $post_id ) . '">' . get_post_meta( $post_id, esc_html( $this->meta_settings['slug'] ), true ) . '</div>';
-
+			}
 		}
 	}
 	
@@ -133,9 +133,9 @@ class Storm_Meta_Bulk_Edit {
 	
 		if ( $post->post_type === $this->meta_settings['post_type'] ) {
 
-			if ( array_key_exists( 'storm_meta_input', $_POST ) )
-				update_post_meta( $post_id, esc_html( $this->meta_settings['slug'] ), sanitize_text_field( $_POST[ 'storm_meta_input' ] ) );
-
+			if ( array_key_exists( 'storm_meta_input', $_POST ) ) {
+				update_post_meta( $post_id, esc_html( $this->meta_settings['slug'] ), sanitize_text_field( $_POST['storm_meta_input'] ) );
+			}
 	   }
 	}
 
